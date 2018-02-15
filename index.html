@@ -9,13 +9,27 @@
 <link href="main.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	$("#dataTable").convertToFusionCharts({
+    type: "mscolumn2d",
+    width: "700",
+    height: "350",
+    dataFormat: "htmltable",
+    renderAt: "chart-container"
+}, {
+    "chartAttributes": {
+        caption: "Units sold for last 2 years",
+        xAxisName: "Month",
+        yAxisName: "Units",
+        bgColor: "FFFFFF",
+        theme: "fint"
+    }
+});
 <script src="jquery-2.1.1.js"></script>
 <script>
 $.getJSON('data.json', function (data) {
     console.log(data);		
 	//loop through json data
 	for(var k in data){
-		//console.log(k, data[k]);	//this can be deleted
 		//target it table with id of listings 
 		$('#listings').append('<tr><td>' + k + '</td><td>'+ data[k].bbcone +'</td><td>'
 								+ data[k].bbctwo +'</td><td>'+ data[k].bbcthree +'</td><td>'
@@ -39,20 +53,5 @@ $.getJSON('data.json', function (data) {
 		<th>Cbeebies</th>
 	</tr>
 </table>
-$("#dataTable").convertToFusionCharts({
-    type: "mscolumn2d",
-    width: "700",
-    height: "350",
-    dataFormat: "htmltable",
-    renderAt: "chart-container"
-}, {
-    "chartAttributes": {
-        caption: "Units sold for last 2 years",
-        xAxisName: "Month",
-        yAxisName: "Units",
-        bgColor: "FFFFFF",
-        theme: "fint"
-    }
-});
 </body>
 </html>
