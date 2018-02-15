@@ -6,165 +6,90 @@
 <meta http-equiv="Content-Type" content="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<link href="data-table-assesment/main.css" media="all" rel="stylesheet" type="text/css" />
-<style>
-table {
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
-}
-
-th, td {
-    text-align: left;
-    padding: 16px;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2
-}
-</style>
+<link href="main.css" media="all" rel="stylesheet" type="text/css" />
+    <style>
+        table, th, td 
+        {
+            margin:10px 0;
+            border:solid 1px #333;
+            padding:2px 4px;
+            font:15px Verdana;
+        }
+        th {
+            font-weight:bold;
+        }
+    </style>
 </head>
 <body>
-
-<table id="myTable">
-  <tr>
-    <th>Date</th>
-    <th>BBCfour</th>
-    <th>BBCnews24</th>
-    <th>BBCone</th>
-    <th>BBCthree</th>
-    <th>BBCtwo</th>
-    <th>CBBC</th>
-    <th>Cbeebies</th>
-  </tr>
-  <tr>
-    <td>2009-01</td>
-    <td>324</td>
-    <td>1075</td>
-    <td>940</td>
-    <td>441</td>
-    <td>1040</td>
-    <td>898</td>
-    <td>1343</td>
-  </tr>
-  <tr>
-    <td>2009-02</td>
-    <td>295</td>
-    <td>958</td>
-    <td>904</td>
-    <td>434</td>
-    <td>1038</td>
-    <td>793</td>
-    <td>1246</td>
-  </tr>
-  <tr>
-    <td>2009-03</td>
-    <td>314</td>
-    <td>1062</td>
-    <td>980</td>
-    <td>494</td>
-    <td>1158</td>
-    <td>914</td>
-    <td>1461</td>
-  </tr>
-  <tr>
-    <td>2009-04</td>
-    <td>336</td>
-    <td>1022</td>
-    <td>987</td>
-    <td>488</td>
-    <td>1014</td>
-    <td>792</td>
-    <td>1382</td>
-  </tr>
-  <tr>
-    <td>2009-05</td>
-    <td>332</td>
-    <td>1073</td>
-    <td>1002</td>
-    <td>512</td>
-    <td>1104</td>
-    <td>840</td>
-    <td>1368</td>
-  </tr>
-  <tr>
-    <td>2009-06</td>
-    <td>311</td>
-    <td>981</td>
-    <td>837</td>
-    <td>432</td>
-    <td>1002</td>
-    <td>801</td>
-    <td>1265</td>
-  </tr>
-  <tr>
-    <td>2009-07</td>
-    <td>321</td>
-    <td>1049</td>
-    <td>921</td>
-    <td>489</td>
-    <td>963</td>
-    <td>881</td>
-    <td>1340</td>
-  </tr>
-   <tr>
-    <td>2009-08</td>
-    <td>294</td>
-    <td>1071</td>
-    <td>960</td>
-    <td>506</td>
-    <td>910</td>
-    <td>885</td>
-    <td>1312</td>
-  </tr>
-  <tr>
-    <td>2009-09</td>
-    <td>281</td>
-    <td>1020</td>
-    <td>952</td>
-    <td>502</td>
-    <td>1068</td>
-    <td>914</td>
-    <td>1397</td>
-  </tr>
-  <tr>
-    <td>2009-10</td>
-    <td>319</td>
-    <td>1058</td>
-    <td>985</td>
-    <td>546</td>
-    <td>1184</td>
-    <td>1031</td>
-    <td>1448</td>
-  </tr>
-  <tr>
-    <td>2009-11</td>
-    <td>300</td>
-    <td>1021</td>
-    <td>967</td>
-    <td>474</td>
-    <td>1176</td>
-    <td>1009</td>
-    <td>1387</td>
-  </tr>
-  <tr>
-    <td>2009-12</td>
-    <td>307</td>
-    <td>1027</td>
-    <td>924</td>
-    <td>427</td>
-    <td>1024</td>
-    <td>844</td>
-    <td>1300</td>
-  </tr>
-    
-</table>
-    
+    <input type="button" onclick="CreateTableFromJSON()" value="Create Table From JSON" />
+    <div id="showData"></div>
 <script src="jquery-2.1.1.js"></script>
 <script>
 $.getJSON('data.json', function (data) {
     console.log(data);
 });
+    function CreateTableFromJSON() {
+        var myBooks = [
+            {
+                "Book ID": "1",
+                "Book Name": "Computer Architecture",
+                "Category": "Computers",
+                "Price": "125.60"
+            },
+            {
+                "Book ID": "2",
+                "Book Name": "Asp.Net 4 Blue Book",
+                "Category": "Programming",
+                "Price": "56.00"
+            },
+            {
+                "Book ID": "3",
+                "Book Name": "Popular Science",
+                "Category": "Science",
+                "Price": "210.40"
+            }
+        ]
+
+        // EXTRACT VALUE FOR HTML HEADER. 
+        // ('Book ID', 'Book Name', 'Category' and 'Price')
+        var col = [];
+        for (var i = 0; i < myBooks.length; i++) {
+            for (var key in myBooks[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+
+        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < myBooks.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = myBooks[i][col[j]];
+            }
+        }
+
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+    }
 </script>
 </body>
 </html>
