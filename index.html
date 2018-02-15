@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<style>
-	html,body,#myChart { height:100%; width:100%;}
-	</style>
 <meta charset="utf-8" />
 <meta http-equiv="content-language" content="en" />
 <meta http-equiv="Content-Type" content="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 <link href="main.css" media="all" rel="stylesheet" type="text/css" />
-		<script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
-		<script> zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
-		ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf6d"];</script>
 </head>
-	
 <body>
 <script src="jquery-2.1.1.js"></script>
 <script>
@@ -29,16 +22,6 @@ $.getJSON('data.json', function (data) {
 								+ data[k].cbbc +'</td><td>'+ data[k].cbeebies +'</td></tr>');				
 	}
 
-});
-zingchart.render({
-    id:"myChart",
-    output:"svg",
-    cache:{
-        data:true
-    },
-    height : "100%",
-    width:"100%",
-    dataurl:"data.json"
 });
 </script>
 
